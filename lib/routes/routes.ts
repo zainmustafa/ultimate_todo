@@ -13,20 +13,20 @@ export class Routes {
         app.route('/todo/api/v1.0/tasks') 
         .get(this.TodoController.getTodo)
  
-        //Get Todo By Id
+        //Get Todo By Id in todo
         app.route('/todo/api/v1.0/tasks/:Todoid') 
         .get(this.TodoController.getTodoId)
 
         
-        // Add  new todo
+        // Add  new todo in todo
         app.route('/todo/api/v1.0/tasks')
         .post(this.TodoController .addNewTodo);
 
-        // Update List 
+        // Update List in todo
         app.route('/todo/api/v1.0/tasks/:Todoid').put(this.TodoController.updateTodo)
 
         
-        // Delete a list     
+        // Delete a list In todo 
         app.route('/todo/api/v1.0/tasks/:Todoid').delete(this.TodoController.deleteTodo)
 
     }
