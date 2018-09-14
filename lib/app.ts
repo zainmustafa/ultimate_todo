@@ -9,7 +9,6 @@ export class App {
 
     public app: express.Application;
     public routePrv: Routes = new Routes();
-    public mongoUrl: string = 'mongodb://saad1:saim1234@ds155862.mlab.com:55862/bootcamp-api';  
 
     
     constructor() {
