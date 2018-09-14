@@ -43,6 +43,37 @@ public getTodo (req: Request, res: Response) {
 
 
 
+
+    //Update a Todo
+    public updateTodo (req: Request, res: Response) {           
+        Todo.findOneAndUpdate({ _id: req.params.Todoid }, req.body, { new: true }, (err, Todo) => {
+            if(err){
+                res.send(err);
+            }
+            res.json(Todo);
+        });
+    }
+
+
+
+    //Delete A Todo
+    public deleteTodo (req: Request, res: Response) {           
+        Todo.remove({ _id: req.params.Todoid }, (err, contact) => {
+            if(err){
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted Todo!'});
+        });
+    }
+
+
+
+
+
+
+
+
+
 }
 
 

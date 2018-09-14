@@ -22,6 +22,12 @@ export class Routes {
         app.route('/todo/api/v1.0/tasks')
         .post(this.TodoController .addNewTodo);
 
+        // Update List 
+        app.route('/todo/api/v1.0/tasks/:Todoid').put(this.TodoController.updateTodo)
+
         
+        // Delete a list     
+        app.route('/todo/api/v1.0/tasks/:Todoid').delete(this.TodoController.deleteTodo)
+
     }
 }
