@@ -44,7 +44,7 @@ export class TodoController {
             });
     }
     public deleteTask (req: Request, res: Response) {
-        Task.remove({ _id: req.params.taskId }, (err, doc) => {
+        Task.deleteOne({ _id: req.params.taskId }, (err, doc) => {
             if(err){
                 res.send(err);
             }
