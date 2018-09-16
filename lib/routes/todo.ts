@@ -17,5 +17,9 @@ export class Routes {
             .get(this.todoController.getTasks)
             .post(this.todoController.addNewTask);
 
+        app.route('/todo/api/v1.0/tasks/:taskId')
+            .get(this.todoController.getTask)
+            .put(this.todoController.updateTask)
+            .delete(this.todoController.deleteTask)
     }
 }

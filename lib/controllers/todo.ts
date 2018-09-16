@@ -15,9 +15,8 @@ export class TodoController {
         };
         let client = new Client(connString);
         client.connect().then(()=>{
-            client.query("INSERT INTO task(task, description, done) values($1, $2, $3)", [newTask.title, newTask.description, newTask.done])
+            client.query(`INSERT INTO task(task, description, done) values('${newTask.title}', '${newTask.description}', ${newTask.done})`)
                 .then(rs => {
-                    console.log(rs)
                     client.query("SELECT * FROM task ORDER BY _id asc")
                         .then(rs => {
                             client.end().then(() => res.status(200).json(rs.rows))
@@ -35,4 +34,42 @@ export class TodoController {
                     }).catch(err => res.json({ success: false, data: err }));
             }).catch(err =>  res.status(500).json({ success: false, data: err }));
     }
+
+    public getTask(req: Request, res: Response) {
+        const id = req.params.taskId;
+        let client = new Client(connString);
+        client.connect().then(() => {
+            client.query(`select * from task where _id=(${id})`)
+                .then(rs => {
+                    client.end().then(() => res.status(200).json(rs.rows))
+                }).catch(err => res.json({ success: false, data: err }));
+        }).catch(err =>  res.status(500).json({ success: false, data: err }));
+    }
+
+    public updateTask(req: Request, res: Response) {
+        const id = req.params.taskId;
+        const { title, description,done } = req.body;
+        const updateTask = {title, description, done, createdAt:Date.now};
+        let client = new Client(connString);
+        client.connect().then(()=>{
+            client.query(`update task set task=('${updateTask.title}'), description=('${updateTask.description}'), done=(${updateTask.done}) where _id=(${id})`)
+                .then(rs => {
+                    client.query(`select * from task where _id=(${id})`)
+                        .then(rs => {
+                            client.end().then(() => res.status(200).json(rs.rows))
+                        }).catch(err => res.json({ success: false, data: err }));
+                })
+        }).catch(err =>  {res.status(500).json({ success: false, data: err })});
+    }
+
+    public deleteTask(req: Request, res: Response) {
+        const id = req.params.taskId;
+        let client = new Client(connString);
+        client.connect().then(() => {
+            client.query(`delete from task where _id=(${id})`)
+                .then(deleteTodo => {
+                    client.end().then(() => res.status(200).json({message: 'Successfully deleted Task!'}))
+                }).catch(err => res.status(500).json({ success: false, data: err }));})
+    }
+
 }
