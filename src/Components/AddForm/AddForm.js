@@ -35,7 +35,7 @@ class AddForm extends Component{
                       name="task"
                       value={task}
                       onChange={this.setTxt}
-                      Placeholder="Add Task"
+                      placeholder="Add Task"
                   />
               </FormGroup>{' '}
               <FormGroup controlId="formInlineName">
@@ -44,7 +44,7 @@ class AddForm extends Component{
                       name="description"
                       value={description}
                       onChange={this.setTxt}
-                      Placeholder="Add Task"
+                      placeholder="Description"
                   />
               </FormGroup>{' '}
               <Button bsStyle="primary" onClick={this.addTask}>Add</Button>

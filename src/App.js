@@ -2,23 +2,45 @@ import React, { Component } from 'react';
 import { Grid, Row, Navbar, Col} from 'react-bootstrap';
 import AddForm from "./Components/AddForm/AddForm";
 import TaskList from "./Components/TaskList/TaskList";
-import firebase from "firebase"
-import {DB_CONFIG}from "./Config/config";
+import db from "./Config/config";
 
 class App extends Component {
     constructor(){
         super();
         this.state = {
             taskTxt:'',
-            description:''
+            description:'',
+            todos:[]
         };
-        !firebase.apps.length ? firebase.initializeApp(DB_CONFIG) : firebase.app();
-        this.db = firebase.firestore();
         this.add  = this.add.bind(this);
     }
+
+    componentWillMount(){
+        const previousTodos = this.state.todos;
+        db.collection("task").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                previousTodos.push({id:doc.id,task:doc.data()})
+            });
+        }).then(()=>{this.setState({todos:previousTodos})})
+
+        db.collection("task").onSnapshot((snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+                for (let i = 0; i < previousTodos.length; i++) {
+                    if(previousTodos[i].id === change.doc.id ){
+                        previousTodos.splice(i,1);
+                    }
+                }
+                if (change.type !== "removed") {
+                    previousTodos.push({id:change.doc.id,task:change.doc.data()});
+                }
+                this.setState({todos:previousTodos});
+            })
+        });
+    }
+
+
     add(task, description){
-        this.setState({taskTxt:task, description});
-        this.db.collection("task").add({
+        db.collection("task").add({
             title: task,
             description: description,
             done: false,
@@ -27,8 +49,7 @@ class App extends Component {
             .catch(function(error) {console.error("Error adding document: ", error);});
     }
     render() {
-        const {taskTxt, description} = this.state;
-        console.log('Console***',taskTxt +'---'+description)
+        const {todos} = this.state;
         return (
             <Grid>
                 <Navbar>
@@ -45,7 +66,7 @@ class App extends Component {
                 </Row>
                 <Row>
                     <Col sm={8} smOffset={2}>
-                        <TaskList/>
+                        <TaskList todoList={todos}/>
                     </Col>
                 </Row>
             </Grid>
