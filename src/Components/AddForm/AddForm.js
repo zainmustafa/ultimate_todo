@@ -5,7 +5,8 @@ class AddForm extends Component{
     constructor(props){
         super(props);
         this.state = {
-            task:''
+            task:'',
+            description:''
         };
         this.setTxt = this.setTxt.bind(this);
         this.addTask = this.addTask.bind(this);
@@ -17,13 +18,15 @@ class AddForm extends Component{
         })
     }
     addTask(){
-        this.props.Add(this.state.task);
+        const {task, description} = this.state;
+        this.props.Add(task, description);
         this.setState({
-            task:''
+            task:'',
+            description:''
         })
     }
     render(){
-        const {task} = this.state;
+        const {task, description} = this.state;
         return(
           <Form inline>
               <FormGroup controlId="formInlineName">
@@ -31,6 +34,15 @@ class AddForm extends Component{
                       type="text"
                       name="task"
                       value={task}
+                      onChange={this.setTxt}
+                      Placeholder="Add Task"
+                  />
+              </FormGroup>{' '}
+              <FormGroup controlId="formInlineName">
+                  <FormControl
+                      type="text"
+                      name="description"
+                      value={description}
                       onChange={this.setTxt}
                       Placeholder="Add Task"
                   />

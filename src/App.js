@@ -2,24 +2,33 @@ import React, { Component } from 'react';
 import { Grid, Row, Navbar, Col} from 'react-bootstrap';
 import AddForm from "./Components/AddForm/AddForm";
 import TaskList from "./Components/TaskList/TaskList";
+import firebase from "firebase"
 import {DB_CONFIG}from "./Config/config";
-import firebase from "firebase/app"
 
 class App extends Component {
     constructor(){
         super();
         this.state = {
             taskTxt:'',
+            description:''
         };
-        this.app = firebase.initializeApp(DB_CONFIG);
-        this.db = this.app.firestore();
+        !firebase.apps.length ? firebase.initializeApp(DB_CONFIG) : firebase.app();
+        this.db = firebase.firestore();
         this.add  = this.add.bind(this);
     }
-    add(txt){
-        this.setState({taskTxt:txt})
+    add(task, description){
+        this.setState({taskTxt:task, description});
+        this.db.collection("task").add({
+            title: task,
+            description: description,
+            done: false,
+            createdAt: new Date
+        }).then(function(docRef) {console.log("Document written with ID: ", docRef.id);})
+            .catch(function(error) {console.error("Error adding document: ", error);});
     }
     render() {
-        const {taskTxt} = this.state;
+        const {taskTxt, description} = this.state;
+        console.log('Console***',taskTxt +'---'+description)
         return (
             <Grid>
                 <Navbar>
@@ -30,7 +39,7 @@ class App extends Component {
                     </Navbar.Header>
                 </Navbar>
                 <Row>
-                    <Col sm={4} smOffset={4}>
+                    <Col sm={6} smOffset={3}>
                         <AddForm Add={this.add}/>
                     </Col>
                 </Row>
