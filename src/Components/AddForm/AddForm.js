@@ -8,11 +8,18 @@ class AddForm extends Component{
             task:''
         };
         this.setTxt = this.setTxt.bind(this);
+        this.addTask = this.addTask.bind(this);
     }
 
     setTxt(e){
         this.setState({
             [e.target.name]:e.target.value
+        })
+    }
+    addTask(){
+        this.props.Add(this.state.task);
+        this.setState({
+            task:''
         })
     }
     render(){
@@ -23,11 +30,12 @@ class AddForm extends Component{
                   <FormControl
                       type="text"
                       name="task"
+                      value={task}
                       onChange={this.setTxt}
                       Placeholder="Add Task"
                   />
               </FormGroup>{' '}
-              <Button bsStyle="primary" onClick={()=>{this.props.Add(task)}}>Add</Button>
+              <Button bsStyle="primary" onClick={this.addTask}>Add</Button>
           </Form>
         );
     }
