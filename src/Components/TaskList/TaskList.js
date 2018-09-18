@@ -21,28 +21,35 @@ class TaskList extends Component{
     render(){
         const {todoList} = this.props;
         return(
-            <table class="table table-striped">
-                <thead class="thead-dark">
+            <div className="table-responsive">
+            <table className="table">
+                <thead className="thead-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Task</th>
                     <th scope="col">Description</th>
                     <th scope="col">Done</th>
                     <th scope="col">Delete</th>
+                    <th scope='col'>Update</th>
                 </tr>
                 </thead>
-                <tbody >
+                
+                <tbody className="todolistmain" >
                 {todoList.map((todo, index) => {
                     return <tr key={todo.id}>
                         <td scope="row">{index+1}</td>
                         <td>{todo.task.title}</td>
                         <td> {todo.task.description} </td>
-                        <td><Checkbox/></td>
+                        <td><input  type="checkbox" className="checkedBox"></input></td>
                         <td><Button bsStyle="danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Del</Button></td>
+                        <td><Button bsStyle="info"> Update</Button></td>
+
                     </tr>
                 })}
+
                 </tbody>
             </table>
+            </div>
         );
     }
 

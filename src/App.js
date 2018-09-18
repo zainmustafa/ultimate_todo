@@ -64,8 +64,9 @@ class App extends Component {
                             <div className="form-group">
                                 <AddForm Add={this.add}/>
                             </div>
-                            <hr></hr>
+                            <div className="form-group">
                             <TaskList todoList={todos}/>
+                            </div>
                     </div>
                 </div>
 

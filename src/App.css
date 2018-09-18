@@ -59,4 +59,11 @@
     font-size: 1.65em;
   }
 
+  .todolistmain{
+    margin-left: 5%;
+  }
 
+  .checkedBox:checked + .checkedLabel {
+    text-decoration: line-through;
+    color: blue
+}
