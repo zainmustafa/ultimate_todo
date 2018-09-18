@@ -22,7 +22,7 @@ class App extends Component {
             querySnapshot.forEach((doc) => {
                 previousTodos.push({id:doc.id,task:doc.data()})
             });
-        }).then(()=>{this.setState({todos:previousTodos})})
+        }).then(()=>{this.setState({todos:previousTodos})});
 
         db.collection("task").onSnapshot((snapshot) => {
             snapshot.docChanges().forEach((change) => {
@@ -69,9 +69,9 @@ class App extends Component {
 
   navabar() {
     return (
-      <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-          <img src={logo} width="35" height="35" class="d-inline-block align-middle" alt=""/>
+      <nav className="navbar navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">
+          <img src={logo} width="35" height="35" className="d-inline-block align-middle" alt=""/>
             Firebase Realtime Todo
         </a>
       </nav>

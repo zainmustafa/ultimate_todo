@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import db from "../../Config/config";
 import swal from 'sweetalert2';
+import "./TaskList.css"
 
 class TaskList extends Component{
 
     constructor(porps){
         super(porps);
         this.delTask = this.delTask.bind(this);
+        this.updateDone = this.updateDone.bind(this);
         this.updateTask=this.updateTask.bind(this)
     }
 
@@ -18,13 +20,15 @@ class TaskList extends Component{
         });
     }
 
-    updateTask(id){
+    updateTask(id,index){
+        const {todoList} = this.props;
+        console.log(todoList[index])
         swal({
             title: 'Firebase Realtime Todo',
             html:
             '<h2>Update Your Todo</h2>'+
-            '<input id="swal-input1" class="swal2-input" autofocus placeholder="Title">' +
-            '<input id="swal-input2" class="swal2-input" placeholder="Description">',
+            '<input id="swal-input1" class="swal2-input" value="'+todoList[index].task.title+'" autofocus placeholder="Title" required>' +
+            '<input id="swal-input2" class="swal2-input" value="'+todoList[index].task.description+'" placeholder="Description" required>',
              preConfirm: function() {
                return new Promise(function(resolve) {
                    if (true) {
@@ -50,6 +54,16 @@ class TaskList extends Component{
             }).catch(function(error) {console.error("Error adding document: ", error);});
         })
     }
+    updateDone(e,id){
+        db.collection("task").doc(id).update({
+            done: e.target.checked,
+        }).then(function(docRef) {
+            swal(
+                'Firebase Realtime Todo!',
+                'Your Task Has Been Updated!',
+            );
+        }).catch(function(error) {console.error("Error adding document: ", error);});
+    }
     render(){
         const {todoList} = this.props;
         return(
@@ -61,8 +75,7 @@ class TaskList extends Component{
                     <th scope="col">Task</th>
                     <th scope="col">Description</th>
                     <th scope="col">Done</th>
-                    <th scope="col">Delete</th>
-                    <th scope='col'>Update</th>
+                    <th scope="col" colSpan={2} className="text-center">Options</th>
                 </tr>
                 </thead>
                 
@@ -72,9 +85,16 @@ class TaskList extends Component{
                         <td scope="row">{index+1}</td>
                         <td>{todo.task.title}</td>
                         <td> {todo.task.description} </td>
-                        <td><input  type="checkbox" className="checkedBox"></input></td>
+                        <td>
+                            <div className="form-check">
+                                <label>
+                                    <input  type="checkbox" name="check" checked={todo.task.done?true:false} onChange={(e)=>{this.updateDone(e,`${todo.id}`)}} className="checkedBox"/>
+                                    <span className="label-text"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td><button className="btn btn-sm btn-info" onClick={()=>{this.updateTask(`${todo.id}`,`${index}`)}}>Edit</button></td>
                         <td><button className="btn btn-sm btn-danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Delete</button></td>
-                        <td><button className="btn btn-sm btn-info" onClick={()=>{this.updateTask(`${todo.id}`)}}>Update</button></td>
                     </tr>
                 })}
                 </tbody>

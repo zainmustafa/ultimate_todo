@@ -43,14 +43,12 @@ class AddForm extends Component{
                 <div className="card card-body">
                     <h3 className="text-center">Add Your Todo</h3>
                     <div className="form-group">
-                        <label for="task">Todo</label>
-                        <input type="text" name="task" placeholder="Add Your Todo" className="form-control"  value={task} required onChange={this.setTxt}></input>
+                        <input type="text" name="task" placeholder="Task Title" className="form-control"  value={task} required onChange={this.setTxt}></input>
                     </div>
                     <div className="form-group">
-                        <label for="description">Description</label>
                         <input type="text" placeholder="Description" name="description" className="form-control"  value={description} onChange={this.setTxt}></input>
                     </div>
-                    <hr></hr>
+                    <hr style={{marginTop:0}}/>
                     <button className="btn btn-primary" onClick={this.addTask}>Add</button>
                 </div>
             </div>
