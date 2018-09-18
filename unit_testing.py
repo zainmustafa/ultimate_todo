@@ -15,11 +15,7 @@ class TodoData(unittest.TestCase):
 
     def tearDown(self):
         pass
-    
-    # def test_todo_api(self):
-    #     response = self.app.get('/todoapp/api/v1.0/yousuf')
-    #     self.assertEqual(response.status_code,200 )
-    
+        
 
     def test_get_todo_data(self):
         response = self.app.get('/todoapp/api/v1.0/task/alldata')
