@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import './App.css'; 
 import { Grid, Row, Navbar, Col} from 'react-bootstrap';
 import AddForm from "./Components/AddForm/AddForm";
 import TaskList from "./Components/TaskList/TaskList";
 import db from "./Config/config";
+import logo from './logo.png'
 
 class App extends Component {
     constructor(){
@@ -13,6 +15,7 @@ class App extends Component {
             todos:[]
         };
         this.add  = this.add.bind(this);
+        this.navabar=this.navabar.bind(this)
     }
 
     componentWillMount(){
@@ -51,27 +54,72 @@ class App extends Component {
     render() {
         const {todos} = this.state;
         return (
-            <Grid>
-                <Navbar>
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <a href="#home">Realtime Todo App</a>
-                        </Navbar.Brand>
-                    </Navbar.Header>
-                </Navbar>
-                <Row>
-                    <Col sm={6} smOffset={3}>
-                        <AddForm Add={this.add}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={8} smOffset={2}>
-                        <TaskList todoList={todos}/>
-                    </Col>
-                </Row>
-            </Grid>
+            <div className="App">
+                    <this.navabar/>
+
+
+
+                <div className="row">
+                    <div className="col-md-8 mx-auto">
+                        <div className="card card-body">
+                            <h3 className="text-center">Add Todo</h3>
+                            <div className="form-group">
+                                <AddForm Add={this.add}/>
+                            </div>
+                            <hr></hr>
+                            <TaskList todoList={todos}/>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
         );
   }
+
+
+
+
+
+
+  /* Navbar Function */
+  navabar() {
+    return (
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <img src={logo} width="30" height="30" class="d-inline-block align-top" alt="">
+          </img>
+          Quiz App
+            </a>
+      </nav>
+
+    )
+
+  }
+/* Navbar Function End  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 export default App;
