@@ -61,14 +61,11 @@ class App extends Component {
 
                 <div className="row">
                     <div className="col-md-8 mx-auto">
-                        <div className="card card-body">
-                            <h3 className="text-center">Add Todo</h3>
                             <div className="form-group">
                                 <AddForm Add={this.add}/>
                             </div>
                             <hr></hr>
                             <TaskList todoList={todos}/>
-                        </div>
                     </div>
                 </div>
 

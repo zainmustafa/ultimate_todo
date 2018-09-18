@@ -10,6 +10,7 @@ class AddForm extends Component{
         };
         this.setTxt = this.setTxt.bind(this);
         this.addTask = this.addTask.bind(this);
+        this.textAndDescription=this.textAndDescription.bind(this)
     }
 
     setTxt(e){
@@ -28,29 +29,52 @@ class AddForm extends Component{
     render(){
         const {task, description} = this.state;
         return(
-          <Form inline>
-              <FormGroup controlId="formInlineName">
-                  <FormControl
-                      type="text"
-                      name="task"
-                      value={task}
-                      onChange={this.setTxt}
-                      placeholder="Add Task"
-                  />
-              </FormGroup>{' '}
-              <FormGroup controlId="formInlineName">
-                  <FormControl
-                      type="text"
-                      name="description"
-                      value={description}
-                      onChange={this.setTxt}
-                      placeholder="Description"
-                  />
-              </FormGroup>{' '}
-              <Button bsStyle="primary" onClick={this.addTask}>Add</Button>
-          </Form>
+          <div>
+              <this.textAndDescription/>
+          </div>
+
         );
     }
+
+
+
+    textAndDescription(){
+        const {task, description} = this.state;
+
+        return(
+        <div className="row">
+                    <div className="col-md-8 mx-auto">
+                        <div className="card card-body">
+                            <h3 className="text-center">Add Your Todo</h3>
+                            <div className="form-group">
+                                <label for="task">Todo</label>
+                                <input type="text" name="task" placeholder="Add Your Todo" className="form-control"  value={task} required onChange={this.setTxt}></input>
+                            </div>
+                            <div className="form-group">
+                                <label for="description">Description</label>
+                                <input type="text" placeholder="Description" name="description" className="form-control"  value={description} onChange={this.setTxt}></input>
+                            </div>
+                            <hr></hr>
+                            <button className="btn btn-primary" onClick={this.addTask}>Add</button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+        )
+
+    }
+
+
+
+
+
+
+
+
+
 }
 
 export  default AddForm;

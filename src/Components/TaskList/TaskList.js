@@ -21,7 +21,7 @@ class TaskList extends Component{
     render(){
         const {todoList} = this.props;
         return(
-            <Table responsive>
+            <Table responsive >
                 <thead>
                 <tr>
                     <th>#</th>
@@ -31,7 +31,7 @@ class TaskList extends Component{
                     <th>Delete</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className="mx-auto">
                 {todoList.map((todo, index) => {
                     return <tr key={todo.id}>
                         <td>{index+1}</td>
