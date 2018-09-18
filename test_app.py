@@ -30,5 +30,13 @@ class TestMain(unittest.TestCase):
 
     def test_put1(self):
         response = self.app.put("/todo/api/v1.0/tasks/9" )
-        self.assertEqual(response.status_code, 200)                
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete(self):
+        response = self.app.delete("/todo/api/v1.0/tasks/8")
+        self.assertEqual(response.status_code, 200)
+   
+
+if __name__ == "__main__":
+    unittest.main()                
             
