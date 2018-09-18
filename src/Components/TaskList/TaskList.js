@@ -45,7 +45,7 @@ class TaskList extends Component{
               });
              }
              }).then(function(result) {
-            swal(JSON.stringify(result));
+            swal(JSON.stringify(result.value[1]));
             })
             }
             
