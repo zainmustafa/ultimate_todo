@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import { Button, Checkbox, Table} from 'react-bootstrap';
 import db from "../../Config/config";
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
+
+
+
 
 
 class TaskList extends Component{
@@ -9,6 +12,7 @@ class TaskList extends Component{
     constructor(porps){
         super(porps);
         this.delTask = this.delTask.bind(this);
+        this.updateTask=this.updateTask.bind(this)
     }
 
     delTask(id){
@@ -22,10 +26,30 @@ class TaskList extends Component{
 
 
 
-    updateTask(){
+    updateTask(id){
+       
+        swal({
+            title: 'Firebase Realtime Todo',
+            html:
+            '<h2>Update Your Todo</h2>'+
+            '<input id="swal-input1" class="swal2-input" autofocus placeholder="Title">' +
+            '<input id="swal-input2" class="swal2-input" placeholder="Description">',
+             preConfirm: function() {
+               return new Promise(function(resolve) {
+               if (true) {
+                resolve([
+                  document.getElementById('swal-input1').value,
+                  document.getElementById('swal-input2').value
+                ]);
+               }
+              });
+             }
+             }).then(function(result) {
+            swal(JSON.stringify(result));
+            })
+            }
+            
 
-        
-    }
 
 
 
@@ -53,7 +77,7 @@ class TaskList extends Component{
                         <td> {todo.task.description} </td>
                         <td><input  type="checkbox" className="checkedBox"></input></td>
                         <td><Button bsStyle="danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Delete</Button></td>
-                        <td><Button bsStyle="info">Update</Button></td>
+                        <td><Button bsStyle="info" onClick={()=>{this.updateTask(`${todo.id}`)}}>Update</Button></td>
 
                     </tr>
                 })}
