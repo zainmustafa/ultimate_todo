@@ -93,9 +93,9 @@ class App extends Component {
     return (
       <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-          <img src={logo} width="30" height="30" class="d-inline-block align-top" alt="">
+          <img src={logo} width="35" height="35" class="d-inline-block align-middle" alt="">
           </img>
-          Quiz App
+          Firebase Realtime Todo
             </a>
       </nav>
 

@@ -21,20 +21,20 @@ class TaskList extends Component{
     render(){
         const {todoList} = this.props;
         return(
-            <Table responsive >
-                <thead>
+            <table class="table table-striped">
+                <thead class="thead-dark">
                 <tr>
-                    <th>#</th>
-                    <th>Task</th>
-                    <th>Description</th>
-                    <th>Done</th>
-                    <th>Delete</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Done</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
-                <tbody className="mx-auto">
+                <tbody >
                 {todoList.map((todo, index) => {
                     return <tr key={todo.id}>
-                        <td>{index+1}</td>
+                        <td scope="row">{index+1}</td>
                         <td>{todo.task.title}</td>
                         <td> {todo.task.description} </td>
                         <td><Checkbox/></td>
@@ -42,7 +42,7 @@ class TaskList extends Component{
                     </tr>
                 })}
                 </tbody>
-            </Table>
+            </table>
         );
     }
 
