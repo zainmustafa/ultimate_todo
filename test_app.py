@@ -26,5 +26,9 @@ class TestMain(unittest.TestCase):
 
     def test_put(self):
         response = self.app.put("/todo/api/v1.0/text/7", data=json.dumps(dict({'title':'asc', 'description' : 'xyz'})), content_type='application/json')
-        self.assertEqual(response.status_code, 200)         
+        self.assertEqual(response.status_code, 200) 
+
+    def test_put1(self):
+        response = self.app.put("/todo/api/v1.0/tasks/9" )
+        self.assertEqual(response.status_code, 200)                
             
