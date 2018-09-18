@@ -15,3 +15,7 @@ class TestMain(unittest.TestCase):
     def test_index_get(self):
         response=self.app.get("/todo/api/v1.0/tasks")
         self.assertEqual(response.status_code,200)
+
+    def test_one_get(self):
+        response = self.app.get("/todo/api/v1.0/tasks/4")
+        self.assertEqual(response.status_code, 200)    
