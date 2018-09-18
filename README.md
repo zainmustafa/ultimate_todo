@@ -14,7 +14,7 @@
 
     1. First Page is Home-Page:
     
-    (This page is appear when someone visit an app first time and easily add an task directly from a same page without adding much details about the "Task" ).
+    (This page is appear when someone visit an app first time and easily add task directly from a same page without adding much details about the "Task" ).
 
     2. Second Page is Add/Edit Page: 
     
