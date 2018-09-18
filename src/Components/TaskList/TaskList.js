@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { Button, Checkbox, Table} from 'react-bootstrap';
 import db from "../../Config/config";
+import swal from 'sweetalert';
+
 
 class TaskList extends Component{
 
@@ -12,11 +14,20 @@ class TaskList extends Component{
     delTask(id){
         console.log(id)
         db.collection("task").doc(id).delete().then(function() {
-            console.log("Document successfully deleted!");
+            swal("Firebase Realtime Todo!", "Todo Deleted!", "error");
         }).catch(function(error) {
             console.error("Error removing document: ", error);
         });
     }
+
+
+
+    updateTask(){
+
+        
+    }
+
+
 
     render(){
         const {todoList} = this.props;
@@ -41,8 +52,8 @@ class TaskList extends Component{
                         <td>{todo.task.title}</td>
                         <td> {todo.task.description} </td>
                         <td><input  type="checkbox" className="checkedBox"></input></td>
-                        <td><Button bsStyle="danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Del</Button></td>
-                        <td><Button bsStyle="info"> Update</Button></td>
+                        <td><Button bsStyle="danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Delete</Button></td>
+                        <td><Button bsStyle="info">Update</Button></td>
 
                     </tr>
                 })}
