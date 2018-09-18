@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css'; 
-import { Grid, Row, Navbar, Col} from 'react-bootstrap';
 import AddForm from "./Components/AddForm/AddForm";
 import TaskList from "./Components/TaskList/TaskList";
 import db from "./Config/config";
@@ -17,7 +16,6 @@ class App extends Component {
         this.add  = this.add.bind(this);
         this.navabar=this.navabar.bind(this)
     }
-
     componentWillMount(){
         const previousTodos = this.state.todos;
         db.collection("task").get().then((querySnapshot) => {
@@ -41,77 +39,44 @@ class App extends Component {
         });
     }
 
-
     add(task, description){
         db.collection("task").add({
             title: task,
             description: description,
             done: false,
             createdAt: new Date
-        }).then(function(docRef) {console.log("Document written with ID: ", docRef.id);})
+        }).then(function(docRef) {console.log("Document written with ID: ", docRef.id)})
             .catch(function(error) {console.error("Error adding document: ", error);});
     }
     render() {
         const {todos} = this.state;
         return (
             <div className="App">
-                    <this.navabar/>
-
-
-
+                <this.navabar/>
                 <div className="row">
                     <div className="col-md-8 mx-auto">
-                            <div className="form-group">
-                                <AddForm Add={this.add}/>
-                            </div>
-                            <div className="form-group">
+                        <div className="form-group">
+                            <AddForm Add={this.add}/>
+                        </div>
+                        <div className="form-group">
                             <TaskList todoList={todos}/>
-                            </div>
+                        </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
             </div>
         );
   }
 
-
-
-
-
-
-  /* Navbar Function */
   navabar() {
     return (
       <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-          <img src={logo} width="35" height="35" class="d-inline-block align-middle" alt="">
-          </img>
-          Firebase Realtime Todo
-            </a>
+          <img src={logo} width="35" height="35" class="d-inline-block align-middle" alt=""/>
+            Firebase Realtime Todo
+        </a>
       </nav>
-
     )
-
   }
-/* Navbar Function End  */
-
-
-
-
-
-
-
 }
-
 
 export default App;

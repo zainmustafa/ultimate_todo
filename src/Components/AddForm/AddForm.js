@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 
 class AddForm extends Component{
     constructor(props){
@@ -27,7 +26,6 @@ class AddForm extends Component{
         })
     }
     render(){
-        const {task, description} = this.state;
         return(
           <div>
               <this.textAndDescription/>
@@ -36,45 +34,29 @@ class AddForm extends Component{
         );
     }
 
-
-
     textAndDescription(){
         const {task, description} = this.state;
 
         return(
         <div className="row">
-                    <div className="col-md-8 mx-auto">
-                        <div className="card card-body">
-                            <h3 className="text-center">Add Your Todo</h3>
-                            <div className="form-group">
-                                <label for="task">Todo</label>
-                                <input type="text" name="task" placeholder="Add Your Todo" className="form-control"  value={task} required onChange={this.setTxt}></input>
-                            </div>
-                            <div className="form-group">
-                                <label for="description">Description</label>
-                                <input type="text" placeholder="Description" name="description" className="form-control"  value={description} onChange={this.setTxt}></input>
-                            </div>
-                            <hr></hr>
-                            <button className="btn btn-primary" onClick={this.addTask}>Add</button>
-
-                        </div>
+            <div className="col-md-8 mx-auto">
+                <div className="card card-body">
+                    <h3 className="text-center">Add Your Todo</h3>
+                    <div className="form-group">
+                        <label for="task">Todo</label>
+                        <input type="text" name="task" placeholder="Add Your Todo" className="form-control"  value={task} required onChange={this.setTxt}></input>
                     </div>
+                    <div className="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" placeholder="Description" name="description" className="form-control"  value={description} onChange={this.setTxt}></input>
+                    </div>
+                    <hr></hr>
+                    <button className="btn btn-primary" onClick={this.addTask}>Add</button>
                 </div>
-
-
-
+            </div>
+        </div>
         )
-
     }
-
-
-
-
-
-
-
-
-
 }
 
 export  default AddForm;
