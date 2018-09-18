@@ -1,7 +1,7 @@
 import app from "./app";
-const PORT = 3000;
+import * as http from "http";
 
-app.listen(PORT, () => {
-    console.log('Express server listening on port http://localhost:3000 ' + PORT);
-});
+const PORT = process.env.PORT || 3000;
 
+let server = http.createServer(app);
+server.listen(PORT);
