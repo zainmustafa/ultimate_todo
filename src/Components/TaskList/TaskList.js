@@ -45,7 +45,29 @@ class TaskList extends Component{
               });
              }
              }).then(function(result) {
-            swal(JSON.stringify(result.value[1]));
+
+            db.collection("task").doc(id).set({
+                title: result.value[0],
+                description: result.value[1],
+                done: false,
+                createdAt: new Date
+            })
+            .then(function(docRef) {console.log("Document written with ID: ", docRef.id);})
+
+                .catch(function(error) {console.error("Error adding document: ", error);});
+
+
+                swal(JSON.stringify(result));
+
+
+
+
+
+
+
+
+
+
             })
             }
             
