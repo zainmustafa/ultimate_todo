@@ -52,13 +52,22 @@ class TaskList extends Component{
                 done: false,
                 createdAt: new Date
             })
-            .then(function(docRef) {console.log("Document written with ID: ", docRef.id);})
+            .then(function(docRef) {
 
-                .catch(function(error) {console.error("Error adding document: ", error);});
+                swal(
+                    'Firebase Realtime Todo!',
+                    'Your Todo Has Been Updated!',
+                    'success'
+                  )
+
+                console.log("Document written with ID: ", docRef.id);
+
+        })
+
+            .catch(function(error) {console.error("Error adding document: ", error);});
 
 
-                swal(JSON.stringify(result));
-
+               
 
 
 
