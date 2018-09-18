@@ -107,8 +107,8 @@ class TaskList extends Component{
                         <td>{todo.task.title}</td>
                         <td> {todo.task.description} </td>
                         <td><input  type="checkbox" className="checkedBox"></input></td>
-                        <td><Button bsStyle="danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Delete</Button></td>
-                        <td><Button bsStyle="info" onClick={()=>{this.updateTask(`${todo.id}`)}}>Update</Button></td>
+                        <td><Button className="btn btn-sm btn-danger" onClick={()=>{this.delTask(`${todo.id}`)}}> Delete</Button></td>
+                        <td><Button className="btn btn-sm btn-info" onClick={()=>{this.updateTask(`${todo.id}`)}}>Update</Button></td>
 
                     </tr>
                 })}
