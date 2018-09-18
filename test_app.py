@@ -11,3 +11,7 @@ class TestMain(unittest.TestCase):
 
     def tearDown(self):
         pass
+
+    def test_index_get(self):
+        response=self.app.get("/todo/api/v1.0/tasks")
+        self.assertEqual(response.status_code,200)
