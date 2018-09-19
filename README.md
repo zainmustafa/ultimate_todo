@@ -4,10 +4,29 @@ use sqlite database with PostgressSQL and flask library SQLAchamy
 
 1:app.py file run all routes imported from file and register their Blueprint
 
+sample code
+```python
+##importing routes with blueprints
+from Routes.get_all import getall_api
 
+#setup Postgres SQL database 
+app = Flask(__name__)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:aliali@localhost/todo'
+db.init_app(app)
+
+
+#Register blueprints
+app.register_blueprint(getall_api)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+```
 
 2:databaseModel.py file consist a sql databse table model 
-```
+```python
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
@@ -43,7 +62,7 @@ class Todo(db.Model):
     
  
 Example Code of Example of route file get_all.py file  
-```
+```python
 from flask import Blueprint,jsonify
 from databaseModel import Todo
 
@@ -64,3 +83,4 @@ def get_all():
         output.append(todo_data)
 
     return jsonify({'title' : output})
+```
