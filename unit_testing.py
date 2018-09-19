@@ -37,5 +37,9 @@ class TodoData(unittest.TestCase):
         response = self.app.put('/todoapp/api/v1.0/task/update/16')
         self.assertEqual(response.status_code,200 )
 
+    def test_remove(self):
+        response = self.app.delete('/todoapp/api/v1.0/task/delete/6')
+        self.assertEqual(response.status_code,200)
+
 if __name__ == "__main__":
     unittest.main() 
