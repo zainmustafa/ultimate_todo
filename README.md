@@ -4,8 +4,19 @@ use sqlite database with PostgressSQL and flask library SQLAchamy
 
 1:app.py file run all routes imported from file and register their Blueprint
 
-2:databaseModel.py file consist a sql databse table model 
 
+
+2:databaseModel.py file consist a sql databse table model 
+```
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(65))
+    description=db.Column(db.String(90))
+    complete = db.Column(db.Boolean)
+```
 3:Routes directory have 6 routes with different functions of which perform CRUD opertaions 
 
 
