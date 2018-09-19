@@ -29,6 +29,10 @@ class TodoData(unittest.TestCase):
         response = self.app.post('/todoapp/api/v1.0/task/add',data=json.dumps(dict({'title':'javafdsags', 'description' : 'androidsss'})), content_type='application/json')
         self.assertEqual(response.status_code,200)
 
+    def test_change_todo(self):
+        response = self.app.put('/todoapp/api/v1.0/task/change/8',data=json.dumps(dict({'title':'Angulars', 'description' : 'BootCamps'})), content_type = 'application/json')
+        self.assertEqual(response.status_code,200)
+
 
 
 if __name__ == "__main__":
