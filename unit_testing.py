@@ -20,6 +20,10 @@ class TodoData(unittest.TestCase):
     def test_get_todo_data(self):
         response = self.app.get('/todoapp/api/v1.0/task/alldata')
         self.assertEqual(response.status_code,200 )
+    
+     def test_get_single_todo_data(self):
+        response =self.app.get('/todoapp/api/v1.0/task/one/5')
+        self.assertEqual(response.status_code,200)
 
 
 if __name__ == "__main__":
