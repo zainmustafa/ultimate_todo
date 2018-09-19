@@ -33,7 +33,9 @@ class TodoData(unittest.TestCase):
         response = self.app.put('/todoapp/api/v1.0/task/change/8',data=json.dumps(dict({'title':'Angulars', 'description' : 'BootCamps'})), content_type = 'application/json')
         self.assertEqual(response.status_code,200)
 
-
+    def test_update(self):
+        response = self.app.put('/todoapp/api/v1.0/task/update/16')
+        self.assertEqual(response.status_code,200 )
 
 if __name__ == "__main__":
     unittest.main() 
