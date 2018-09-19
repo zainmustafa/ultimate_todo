@@ -2,6 +2,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Routes } from "./routes/todo";
 import { Client } from "pg";
+import * as cors from "cors";
 
 class App {
 
@@ -9,6 +10,7 @@ class App {
     public routePrv: Routes = new Routes();
     constructor() {
         this.app = express();
+        this.app.use(cors());
         this.config();
         this.routePrv.routes(this.app);
     }
