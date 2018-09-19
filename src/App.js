@@ -16,11 +16,9 @@ class App extends Component {
         this.navabar=this.navabar.bind(this)
     }
     componentWillMount(){
-        // const previousTodos = this.state.todos;
         fetch('https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks').then(res => res.json())
             .then(response => console.log('res', this.setState({todos:response})))
             .catch(error => console.error('Error:', error));
-
     }
 
     add(task, description){

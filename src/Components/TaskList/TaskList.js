@@ -5,11 +5,21 @@ class TaskList extends Component{
 
     constructor(porps){
         super(porps);
+        this.delTask = this.delTask.bind(this);
     }
+
+    delTask(id){
+        fetch(`https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks/${id}`,{method: "DELETE"})
+            .then(res => res.json())
+            .then(response => {
+                swal("Firebase Realtime Todo!", "Todo Deleted!", "error");
+                console.log('res', console.log(response))
+            }).catch(error => console.error('Error:', error));
+    }
+
 
     render(){
         const {todoList} = this.props;
-
         return(
             <div className="table-responsive">
             <table className="table">
@@ -30,10 +40,10 @@ class TaskList extends Component{
                         <td>{todo.title}</td>
                         <td> {todo.description} </td>
                         <td>
-                            <input  type="checkbox" checked={todo.done?true:false}  className="checkedBox"/>
+                            <input  type="checkbox" checked={todo.done?true:false} onChange={(e)=>{this.updateDone(e,`${todo._id}`)}} className="checkedBox"/>
                         </td>
-                        <td><button className="btn btn-sm btn-info" >Edit</button></td>
-                        <td><button className="btn btn-sm btn-danger" > Delete</button></td>
+                        <td><button className="btn btn-sm btn-info" onClick={()=>{this.updateTask(`${todo._id}`,`${index}`)}}>Edit</button></td>
+                        <td><button className="btn btn-sm btn-danger" onClick={()=>{this.delTask(`${todo._id}`)}}> Delete</button></td>
                     </tr>
                 })}
                 </tbody>
