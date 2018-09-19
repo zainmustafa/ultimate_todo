@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import db from "../../Config/config";
 import swal from 'sweetalert2';
-import "./TaskList.css"
 
 class TaskList extends Component{
 
