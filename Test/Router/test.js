@@ -11,6 +11,7 @@ describe('ToDo Lists Of Tasks', () => {
                 done();
             });
         });
+    });
         //  Todo's Single Task Getting 
         describe('II: GET Single Task', () => {
 
@@ -55,6 +56,13 @@ describe('ToDo Lists Of Tasks', () => {
                 });
             });
         });
-
-    });
+            // Deleting a Task
+        describe('V: DELETE A Task', () => {
+            it('Should Delete A Task', (done) => {
+                request.delete('http://localhost:3000/todo/api/v1.0/tasks/5b9f7304d25d002798badfa0', (error, response, body) => {
+                    expect(response.statusCode).to.equal(200);
+                    done();
+                });
+            });
+        });
 });
