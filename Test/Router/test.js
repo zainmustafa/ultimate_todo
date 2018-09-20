@@ -39,5 +39,22 @@ describe('ToDo Lists Of Tasks', () => {
                 });
             });
         });
+        // Updating a Task 
+        describe('IV: UPDATE A Task', () => {
+            it('Should Update A Task', (done) => {
+                request.put({
+                    url: 'http://localhost:3000/todo/api/v1.0/tasks/5b9f7304d25d002798badfa0',
+                    json: {
+                        title: "task",
+                        description: "wanna go somewhere",
+                        done: false
+                    }
+                }, (error, response, body) => {
+                    expect(response.statusCode).to.equal(200);
+                    done();
+                });
+            });
+        });
+
     });
 });
