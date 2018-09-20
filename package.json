@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha Test/**/test.js --timeout 10000",
     "build": "tsc",
     "dev": "ts-node ./lib/server.ts",
-    "start": "nodemon ./dist/server.js"
-    ,
+    "start": "nodemon ./dist/server.js",
     "prod": "npm run build && npm run start"
   },
   "author": "",
@@ -16,12 +15,19 @@
   "dependencies": {
     "@types/express": "^4.16.0",
     "body-parser": "^1.18.3",
-    "chai": "^4.1.2",
     "express": "^4.16.3",
-    "mocha": "^5.2.0",
     "mongoose": "^5.2.14",
     "nodemon": "^1.18.4",
     "sinon": "^6.3.3",
-    "sinon-mongoose": "^2.2.1"
+    "sinon-mongoose": "^2.2.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0",
+    "should": "^13.2.3",
+    "typescript-tools": "^0.3.1"
   }
 }

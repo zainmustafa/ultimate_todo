@@ -12,4 +12,6 @@ POST  http://localhost:3000/todo/api/v1.0/tasks  Create  a  new  task
 PUT http://localhost:3000/todo/api/v1.0/tasks/[task_id]  Update  an  existing  task  
 
 DELETE  http://localhost:3000/todo/api/v1.0/tasks/[task_id]  Delete  a  task  
-
+ 
+# To Test The API
+# Run npm test
