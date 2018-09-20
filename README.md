@@ -1,4 +1,2 @@
-# Todo Using Firebase
+# Todo App In-Memory
 
-## Project Link
- * Realtime TodoApp - [Link](https://realtime-todo-23.firebaseapp.com/)
