@@ -4,7 +4,7 @@ const request = require('request'),
 describe('ToDo Lists Of Tasks', () => {
 
     describe('I: GET All The Tasks', () => {
-        //  Todo's Tasks Getting  
+        //  Getting all The Tasks
         it('Should Get All The Tasks', (done) => {
             request.get('http://localhost:3000/todo/api/v1.0/tasks', (error, response, body) => {
                 expect(response.statusCode).to.equal(200);
@@ -12,7 +12,7 @@ describe('ToDo Lists Of Tasks', () => {
             });
         });
     });
-        //  Todo's Single Task Getting 
+        //  Getting A Single Task
         describe('II: GET Single Task', () => {
 
             it('Should Get Single Task', (done) => {
@@ -22,7 +22,7 @@ describe('ToDo Lists Of Tasks', () => {
                 });
             });
         });
-        //  Todo's Task Posting 
+        //  Posting a Task
         describe('III: POST A Task', () => {
 
             it('Should Post A Task', (done) => {
