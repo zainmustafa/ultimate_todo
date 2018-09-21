@@ -54,7 +54,8 @@ Completed By :
  ----
  ### Step 3: Todo gRPC API Project: A TDD Approach to Building anAPI using SQL and NoSQL Databases
 
-**In Progress**
+#### In Progress
+
  ----
 
 # Part II: Client Apps
@@ -91,7 +92,8 @@ Completed By :
  ---
 ### Step 5: Build a UI Component based Todo Client App using the TDD Approach.
 
-In Progress
+#### In Progress
+
  ---
 # Part III: Realtime App
 ### Step 1: Build a Simple Realtime Todo Client App using the TDD Approach
