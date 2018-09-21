@@ -50,7 +50,6 @@ export class TodoController {
         const id = req.params.taskId;
         const { title, description,done } = req.body;
         const updateTask = {title, description, done, createdAt:Date.now};
-        console.log(updateTask);
         let client = new Client(connString);
         let q;
         if (updateTask.title && updateTask.description)
