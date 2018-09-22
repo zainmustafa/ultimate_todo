@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "mocha test/**/test.js --timeout 10000",
     "build": "tsc",
     "dev": "ts-node ./lib/server.ts",
     "start": "nodemon ./dist/server.js",
@@ -18,7 +19,12 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "pg": "^7.4.3"
-
-     
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0",
+    "should": "^13.2.3",
+    "typescript-tools": "^0.3.1"
   }
 }
