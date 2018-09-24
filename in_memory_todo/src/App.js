@@ -19,6 +19,12 @@ class App extends Component {
     };
     todos.push(newTodo);
     this.setState(todos);
+  };
+
+  handleDelete = index => {
+    const { todos } = this.state;
+    todos.splice(index, 1);
+    this.setState({ todos });
     console.log(this.state.todos);
   };
 
@@ -46,7 +52,10 @@ class App extends Component {
             handleDescription={this.handleDescription}
             handleReset={this.handleReset}
           />
-          <TaskList todos={this.state.todos} />
+          <TaskList 
+            todos={this.state.todos} 
+            onDelete={this.handleDelete}
+          />
         </main>
       </React.Fragment>
     );

@@ -31,7 +31,11 @@ class Input extends Component {
                             id="descriptionText"
                         />
                         <button 
-                            onClick={this.props.onAdd} 
+                            onClick={() => {
+                                this.props.onAdd();
+                                document.getElementById('titleText').value = '';
+                                document.getElementById('descriptionText').value = '';
+                            }} 
                             className="btn btn-primary btn-sm m-2">
                             Add Task
                         </button>

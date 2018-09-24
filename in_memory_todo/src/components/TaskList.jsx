@@ -23,14 +23,14 @@ class TaskList extends Component {
                                             <td>{todo.description}</td>
                                             <td>
                                                 <button 
-                                                    onClick={this.props.onAdd} 
+                                                    onClick={this.props.onAdd}
                                                     className="btn btn-success btn-sm m-2">
                                                     Update Task
                                                 </button>
                                             </td>
                                             <td>
                                                 <button 
-                                                    onClick={this.props.onAdd} 
+                                                    onClick={() => this.props.onDelete(index)} 
                                                     className="btn btn-danger btn-sm m-2">
                                                     Delete Task
                                                 </button>
