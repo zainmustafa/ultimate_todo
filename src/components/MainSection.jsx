@@ -1,88 +1,74 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TodoItem from './TodoItem';
-import Footer from './Footer';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../modules/visibilityFilter/actions';
-
-const filters = {
-  [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed,
-};
+import swal from 'sweetalert2';
 
 export default class MainSection extends Component {
   static propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
     todos: PropTypes.object.isRequired,
-    filter: PropTypes.string.isRequired,
-    removeCompleted: PropTypes.func.isRequired,
-    filterTodos: PropTypes.func.isRequired,
     editTodo: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired,
     completeTodo: PropTypes.func.isRequired,
   }
-
-  _removeCompletedHandler = () => {
-    this.props.removeCompleted();
-  }
-
-  _handleShow = (filter) => {
-    this.props.filterTodos(filter);
-  }
-
-  _renderToggleAll(completedCount) {
-    const { todos } = this.props;
-    if (todos.data.length) {
-      return (
-        <input
-          className="toggle-all"
-          type="checkbox"
-          checked={completedCount === todos.data.length}
-        />
-      );
+    delTask(id){
+        this.props.deleteTodo(id);
+        swal("Firebase Realtime Todo!", "Todo Deleted!", "error");
     }
-    return null;
-  }
-
-  _renderFooter(completedCount) {
-    const { todos, filter } = this.props;
-    const activeCount = todos.data.length - completedCount;
-    if (todos.data.length) {
-      return (
-        <Footer
-          completedCount={completedCount}
-          activeCount={activeCount}
-          filter={filter}
-          onClearCompleted={this._removeCompletedHandler}
-          filterTodos={this._handleShow}
-        />
-      );
+    updateTask(id,title,description){
+        swal({
+            title: 'Firebase Realtime Todo',
+            html:
+            '<h2>Update Your Todo</h2>'+
+            '<input id="swal-input1" class="swal2-input" value="'+title+'" autofocus placeholder="Title" >' +
+            '<input id="swal-input2" class="swal2-input" value="'+description+'" placeholder="Description" >',
+            preConfirm: function() {
+                return new Promise(function(resolve) {
+                    if (true) {
+                        resolve([
+                            document.getElementById('swal-input1').value,
+                            document.getElementById('swal-input2').value
+                        ]);
+                    }
+                });
+            }
+        }).then((result) => {
+            this.props.editTodo(id, result.value[0],result.value[1]);
+            swal(
+                'Firebase Realtime Todo!',
+                'Your Todo Has Been Updated!',
+                'success'
+            )
+        })
     }
-    return null;
-  }
-
   render() {
-    const { todos, filter } = this.props;
-
-    const filteredTodos = todos.data.filter(filters[filter]);
-    // eslint-disable-next-line no-confusing-arrow
-    const completedCount = todos.data.filter(filters[SHOW_COMPLETED]).length;
-
+    const { todos } = this.props;
     return todos.pending && !todos.data.length ? null : (
       <section className="main">
-        {this._renderToggleAll(completedCount)}
-        <ul className="todo-list">
-          {filteredTodos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              editTodo={this.props.editTodo}
-              deleteTodo={this.props.deleteTodo}
-              completeTodo={this.props.completeTodo}
-            />
-          ))}
-        </ul>
-        {this._renderFooter(completedCount)}
+          <table className="table">
+              <thead className="thead-dark">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Done</th>
+                  <th scope="col" colSpan={2} className="text-center">Options</th>
+              </tr>
+              </thead>
+
+              <tbody className="todolistmain" >
+              {todos.data.map((todo,index )=> (
+                  <tr key={todo._id }>
+                  <td scope="row">{index+1}</td>
+                  <td>{todo.title}</td>
+                  <td> {todo.description} </td>
+                  <td>
+                  <input  type="checkbox" checked={todo.done} onChange={() => this.props.completeTodo(todo._id, todo.done)} className="checkedBox"/>
+                  </td>
+                  <td><button className="btn btn-sm btn-info" onClick={()=>{this.updateTask(`${todo._id}`,`${todo.title}`,`${todo.description}`)}}>Edit</button></td>
+                  <td><button className="btn btn-sm btn-danger" onClick={()=>{this.delTask(`${todo._id}`)}}> Delete</button></td>
+                  </tr>
+              ))}
+              </tbody>
+          </table>
       </section>
     );
   }

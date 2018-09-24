@@ -3,25 +3,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
+import logo from '../../public/logo.png';
 import {
   fetchTodos,
   addTodo,
-  removeCompleted,
   editTodo,
   deleteTodo,
   completeTodo,
 } from '../modules/todos/actions';
-import { setVisibilityFilter } from '../modules/visibilityFilter/actions';
 
 class App extends React.Component {
   static propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
     todos: PropTypes.object.isRequired,
     fetchTodos: PropTypes.func.isRequired,
     addTodo: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired,
-    filterTodos: PropTypes.func.isRequired,
-    removeCompleted: PropTypes.func.isRequired,
     editTodo: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired,
     completeTodo: PropTypes.func.isRequired,
@@ -35,6 +30,7 @@ class App extends React.Component {
     const { todos } = this.props;
     return (
       <div>
+          <this.navabar/>
         <Header
           addTodo={this.props.addTodo}
           loading={todos.pending && !todos.data.length}
@@ -42,9 +38,6 @@ class App extends React.Component {
         />
         <MainSection
           todos={todos}
-          filter={this.props.filter}
-          filterTodos={this.props.filterTodos}
-          removeCompleted={this.props.removeCompleted}
           editTodo={this.props.editTodo}
           deleteTodo={this.props.deleteTodo}
           completeTodo={this.props.completeTodo}
@@ -52,6 +45,17 @@ class App extends React.Component {
       </div>
     );
   }
+
+    navabar() {
+        return (
+            <nav className="navbar navbar-dark bg-dark">
+                <a className="navbar-brand" href="#">
+                    <img src={logo} width="35" height="35" className="d-inline-block align-middle" alt=""/>
+                    ReactiveX NoSql Todo
+                </a>
+            </nav>
+        )
+    }
 }
 
 const mapStateToProps = state => ({
@@ -61,10 +65,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchTodos: () => dispatch(fetchTodos()),
-  addTodo: text => dispatch(addTodo(text)),
-  filterTodos: filter => dispatch(setVisibilityFilter(filter)),
-  removeCompleted: () => dispatch(removeCompleted()),
-  editTodo: (id, text) => dispatch(editTodo(id, text)),
+  addTodo: (title,description )=> dispatch(addTodo(title,description)),
+  editTodo: (id, text, description) => dispatch(editTodo(id, text, description)),
   deleteTodo: id => dispatch(deleteTodo(id)),
   completeTodo: (id, completed) => dispatch(completeTodo(id, completed)),
 });

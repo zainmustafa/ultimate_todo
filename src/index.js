@@ -10,7 +10,6 @@ import 'todomvc-app-css/index.css';
 import App from './containers/App';
 import { reducers, epics } from './modules';
 
-// eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const epicMiddleware = createEpicMiddleware(epics);
 
@@ -22,7 +21,6 @@ const store = createStore(
 );
 
 render(
-  // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>
     <App />
   </Provider>,

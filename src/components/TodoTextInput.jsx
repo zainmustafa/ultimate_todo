@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 export default class TodoTextInput extends Component {
   static propTypes = {
     onSave: PropTypes.func.isRequired,
-    // eslint-disable-next-line react/no-unused-prop-types
     text: PropTypes.string,
     placeholder: PropTypes.string,
     editing: PropTypes.bool,
@@ -21,24 +19,23 @@ export default class TodoTextInput extends Component {
 
   state = {
     text: '',
+    description: '',
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ test: props.text });
+    this.setState({ text: props.text });
   }
 
   handleSubmit = (e) => {
-    const text = e.target.value.trim();
-    if (e.which === 13) {
-      this.props.onSave(text);
+      const {text,description} =this.state;
+      this.props.onSave(text,description);
       if (this.props.newTodo) {
-        this.setState({ text: '' });
+        this.setState({ text: '',description: '' });
       }
-    }
   }
 
   handleChange = (e) => {
-    this.setState({ text: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleBlur = (e) => {
@@ -47,23 +44,42 @@ export default class TodoTextInput extends Component {
     }
   }
 
+
+
   render() {
     return (
-      <input
-        className={
-          classnames({
-            edit: this.props.editing,
-            'new-todo': this.props.newTodo,
-          })
-        }
-        type="text"
-        placeholder={this.props.placeholder}
-        autoFocus="true"
-        value={this.state.text}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleSubmit}
-      />
+        <div className="row">
+            <div className="col-md-8 mx-auto">
+                <div className="card card-body">
+                    <h3 className="text-center">Add Your Todo</h3>
+                    <div className="form-group">
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder={this.props.placeholder}
+                            autoFocus="true"
+                            name="text"
+                            value={this.state.text}
+                            onBlur={this.handleBlur}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Description"
+                            autoFocus="true"
+                            name="description"
+                            value={this.state.description}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <hr style={{marginTop:0}}/>
+                    <button className="btn btn-primary" onClick={this.handleSubmit}>Add</button>
+                </div>
+            </div>
+        </div>
     );
   }
 }
