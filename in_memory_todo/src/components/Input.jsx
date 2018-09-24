@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 class Input extends Component {
-    state = {  }
+    state = { 
+
+     };
     render() { 
         return (  
             <div>
@@ -20,14 +22,14 @@ class Input extends Component {
                             type="text" 
                             className="form-control m-2" 
                             placeholder="Enter Title of Task"
-                            onChange={this.props.handleTitle}
+                            onChange={(event) => this.props.handleTitle("title", event)}
                             id="titleText"
                         />
                         <input 
                             type="text" 
                             className="form-control m-2" 
                             placeholder="Enter Description of Task"
-                            onChange={this.props.handleDescription}
+                            onChange={(event) => this.props.handleDescription("description", event)}
                             id="descriptionText"
                         />
                         <button 

@@ -8,7 +8,10 @@ class App extends Component {
   state = {
     title: '',
     description: '',
-    todos: []
+    todos: [],
+    updateTitleText: '',
+    updateDescriptionText: '',
+    index: 0
   };
 
   handleAdd = () => {
@@ -25,7 +28,6 @@ class App extends Component {
     const { todos } = this.state;
     todos.splice(index, 1);
     this.setState({ todos });
-    console.log(this.state.todos);
   };
 
   handleReset = () => {
@@ -33,12 +35,34 @@ class App extends Component {
     this.setState({todos});
   };
 
-  handleTitle = (event) => {
-    this.setState({title: event.target.value});
+  handleTitle = (key, event) => {
+    this.setState({[key]: event.target.value});
   };
 
-  handleDescription = (event) => {
-    this.setState({description: event.target.value});
+  handleDescription = (key, event) => {
+    this.setState({[key]: event.target.value});
+  };
+
+  handleUpdateText = (todo) => {
+    this.setState({
+      updateTitleText: todo.title,
+      updateDescriptionText: todo.description
+    });
+  };
+
+  handleUpdateTask = () => {
+    const { todos, index, updateTitleText, updateDescriptionText } = this.state;
+    todos[index].title = updateTitleText;
+    todos[index].description = updateDescriptionText;
+    this.setState({ todos });
+    console.log(index);
+    console.log(todos);
+  };
+
+  storeIndex = (index) => {
+    this.setState({
+      index: index
+    });
   };
 
   render() {
@@ -55,6 +79,13 @@ class App extends Component {
           <TaskList 
             todos={this.state.todos} 
             onDelete={this.handleDelete}
+            handleTitle={this.handleTitle}
+            handleDescription={this.handleDescription}
+            handleUpdateText={this.handleUpdateText}
+            updateTitleText={this.state.updateTitleText}
+            updateDescriptionText={this.state.updateDescriptionText}
+            updateTask={this.handleUpdateTask}
+            storeIndex={this.storeIndex}
           />
         </main>
       </React.Fragment>
