@@ -1,0 +1,29 @@
+syntax = "proto3"; //Specify proto3 version.
+
+package employees; //Optional: unique package name.
+
+//Service. define the methods that the grpc server can expose to the client.
+service EmployeesService {
+  rpc List (Empty) returns (EmployeeList);
+  rpc Insert (Employee) returns (Empty);
+  rpc Get (todoId) returns (EmployeeList);
+  rpc Delete (todoId) returns (Empty);
+  rpc Update (Employee) returns (Empty);
+
+}
+message Empty {}
+
+message Employee {
+  int32 Todoid = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message EmployeeList {
+  repeated Employee employee = 1;
+}
+
+message todoId {
+  int32 Todoid = 1;
+}
+
