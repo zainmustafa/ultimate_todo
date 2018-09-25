@@ -91,7 +91,7 @@ Completed By :
  ---
  ### Step 4: Build a Simple Todo Client App using the TDD Approach
  
-[Github Branch Link For Nosql Api](https://github.com/zainmustafa/ultimate_todo/tree/simple-todo-client-nosql-api)
+[Github Branch Link For Nosql Api](https://github.com/zainmustafa/ultimate_todo/tree/reactivex-todo-client-nosql-api)
 
 [Github Branch Link For Sql Api](https://github.com/zainmustafa/ultimate_todo/tree/simple-todo-client-sql-api)
 Completed By :
@@ -99,7 +99,12 @@ Completed By :
  ---
 ### Step 5: Build a UI Component based Todo Client App using the TDD Approach.
 
-#### In Progress
+[Github Branch Link For Nosql Api](https://github.com/zainmustafa/ultimate_todo/tree/simple-todo-client-nosql-api)
+
+[Github Branch Link For Sql Api](https://github.com/zainmustafa/ultimate_todo/tree/reactivex-todo-client-sql-api)
+Completed By :
+ - Osama Khan
+
 
  ---
 # Part III: Realtime App
