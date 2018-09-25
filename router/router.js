@@ -6,6 +6,6 @@ router.get('/tasks', grpcClient.todoList)
 router.get('/tasks/:Todoid', grpcClient.getTodo)   
 router.delete('/tasks/delete/:Todoid', grpcClient.deleteTodo)
 router.post('/tasks/add', grpcClient.addTodo)
-
+router.put('/tasks/edit/:Todoid', grpcClient.updateTodo)
 
 module.exports = router   

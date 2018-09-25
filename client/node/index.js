@@ -58,10 +58,12 @@ client.Insert({
 
 }
 
+function updateTodo(req,res){
+
 client.update({
-	Todoid: 637667,
-	title: "Bhaiya Update Ho gaya",
-	description: "ha bhai sach mai ho gaya"
+	Todoid: parseInt(req.params.Todoid),
+	title: req.body.title,
+	description: req.body.description
 }, (error, response) => {
 	if (
 		!error
@@ -69,14 +71,17 @@ client.update({
 		console.log("Response  5: ", response)
 	}
 	else {
-		console.log("Error 5:", error.message);
+		console.log("Status Failed But Your Data Could Be Updated check All Todos")
 	}
 });
+}
 
 module.exports = {
 	todoList,
 	getTodo,
 	deleteTodo,
-	addTodo
+	addTodo,
+ 	updateTodo
+
 
 }
