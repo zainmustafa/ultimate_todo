@@ -32,7 +32,7 @@ function deleteTodo(req, res) {
 			res.send({ status: success })
 		}
 		else {
-			console.log("Status Failed But Your Data Could Be Deleted Check Todo")
+			console.log(error)
 		}
 	})
 }
@@ -44,17 +44,13 @@ client.Insert({
 	title: req.body.title,
 	description: req.body.description
 }, (error, response) => {
-	if (
-		!error
-	) {
-		res.send({ status: success })
-	}
-	else {
-		
-		console.log("Status Failed But Your Data Could Be Inserted check All Todos")
-
-	}
-});
+	   if (error){
+			console.log(error)
+	   }
+	   else{
+			res.send({Done})
+	   }
+	});
 
 }
 
@@ -71,7 +67,7 @@ client.update({
 		console.log("Response  5: ", response)
 	}
 	else {
-		console.log("Status Failed But Your Data Could Be Updated check All Todos")
+		console.log(error)
 	}
 });
 }

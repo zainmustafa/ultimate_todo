@@ -6,9 +6,9 @@ package employees; //Optional: unique package name.
 service EmployeesService {
   rpc List (Empty) returns (EmployeeList);
   rpc Insert (Employee) returns (EmployeeList);
-  rpc Get (todoId) returns (Employee);
+  rpc Get (todoId) returns (EmployeeList);
   rpc Delete (todoId) returns (EmployeeList);
-  rpc Update (Employee) returns (Employee);
+  rpc Update (Employee) returns (EmployeeList);
 
 }
 message Empty {}
@@ -18,6 +18,8 @@ message Employee {
   string title = 2;
   string description = 3;
 }
+
+
 
 message EmployeeList {
   repeated Employee employee = 1;
