@@ -41,6 +41,20 @@ function getTodo(req, res) {
 	}
 }); */
 
+function deleteTodo(req, res) {
+	client.delete({
+	 Todoid: parseInt(req.params.Todoid)
+	}, (error, response) => {
+		if (
+			!error
+		) {
+			res.send({ status: success })
+		}
+		else {
+			console.log("not delete")
+		}
+	})
+}
 
 
 
@@ -79,5 +93,7 @@ client.update({
 
 module.exports = {
 	todoList,
-	getTodo
+	getTodo,
+	deleteTodo
+
 }

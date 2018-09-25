@@ -31,7 +31,7 @@ app.use(cors());
 // parse application/json
 app.use(bodyParser.json())
 
-/* initiate router */
+/* initiate router */   
 var TodoRouter = require('./router/router')
 
 
