@@ -37,7 +37,7 @@ var TodoRouter = require('./router/router')
 
 app.use('/todo/api/v1.0', TodoRouter)
 
-app.listen(2000, () => {
+app.listen(3000, () => {
     console.log("server starts port 2000")
 })
 

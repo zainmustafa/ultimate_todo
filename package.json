@@ -5,14 +5,17 @@
   "main": "server/index.js",
   "dependencies": {
     "bluebird": "^3.5.1",
+    "chai": "^4.1.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "grpc": "^1.9.1",
-    "mongoose": "^4.4.3"
+    "mocha": "^5.2.0",
+    "mongoose": "^4.4.3",
+    "request": "^2.88.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js --timeout 10000"
   },
   "repository": {
     "type": "git",
@@ -27,8 +30,5 @@
   ],
   "author": "Amulya Kashyap <amulyakashyap09@gmail.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/amulyakashyap09/nodejs_grpc/issues"
-  },
-  "homepage": "https://github.com/amulyakashyap09/nodejs_grpc#readme"
+  "bugs": {}
 }
