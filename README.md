@@ -3,14 +3,14 @@
 
 ## Run On PostMan 
 
-GET  https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks  Retrieve  list  of  tasks
+GET  https://sql-node-api.herokuapp.com/todo/api/v1.0/tasks  Retrieve  list  of  tasks
 
-GET  https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks/[task_id]  Retrieve  a  task
+GET  https://sql-node-api.herokuapp.com/todo/api/v1.0/tasks/[task_id]  Retrieve  a  task
 
-POST  https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks  Create  a  new  task
+POST  https://sql-node-api.herokuapp.com/todo/api/v1.0/tasks  Create  a  new  task
 
-PUT https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks/[task_id]  Update  an  existing  task
+PUT https://sql-node-api.herokuapp.com/todo/api/v1.0/tasks/[task_id]  Update  an  existing  task
 
-DELETE  https://nosql-node-api.herokuapp.com/todo/api/v1.0/tasks/[task_id]  Delete  a  task
+DELETE  https://sql-node-api.herokuapp.com/todo/api/v1.0/tasks/[task_id]  Delete  a  task
 
 
