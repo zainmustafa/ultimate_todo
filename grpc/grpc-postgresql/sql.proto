@@ -1,0 +1,19 @@
+syntax = "proto3"; //Using proto3 version.
+
+package proto; 
+
+service TodoService {
+  
+  rpc Insert (Todo) returns (Empty);
+
+}
+
+// Message Type definition for a Todo.
+
+message Empty {}
+
+message Todo {
+  string todo = 1;
+  string description = 2;
+}
+
