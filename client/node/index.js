@@ -8,17 +8,6 @@ const proto = grpc.load({root: protoPath, file: 'employees.proto'});
 const client = new proto.employees.EmployeesService('localhost:50050', grpc.credentials.createInsecure());
 
 
-/* function todoList(req,response){
-client.List({}, (error, response) => {
-	if (!error) {
-		console.log("Response1 : ", response)
-		res.send(response)
-	}
-	else {
-		console.log("Error1:", error.message);
-	}
-});
-} */
 
 function todoList(req, res) {
     client.List({}, function (err, todos) {
@@ -28,20 +17,18 @@ function todoList(req, res) {
 }
 
 
-client.get({
-	Todoid: 1
-}, (error, response) => {
-	if (
-		!error
-	) {
-		console.log("Response 2 : ", response)
-	}
-	else {
-		console.log("Error 2:", error.message);
-	}
-});
+function getTodo(req, res) {
+    client.get({
+        Todoid: parseInt(req.params.Todoid)
+    }, function (err, todo) {
+        res.send(todo)
+    });
+}
 
-client.delete({
+
+
+
+/* client.delete({
 	Todoid: 764474
 }, (error, response) => {
 	if (
@@ -52,7 +39,10 @@ client.delete({
 	else {
 		console.log("Error 3:", error.message);
 	}
-});
+}); */
+
+
+
 
 client.Insert({
 	Todoid: parseInt(Math.random() * 1000000),
@@ -88,5 +78,6 @@ client.update({
 });
 
 module.exports = {
-    todoList
+	todoList,
+	getTodo
 }
