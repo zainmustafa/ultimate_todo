@@ -8,15 +8,25 @@ const proto = grpc.load({root: protoPath, file: 'employees.proto'});
 const client = new proto.employees.EmployeesService('localhost:50050', grpc.credentials.createInsecure());
 
 
-
+/* function todoList(req,response){
 client.List({}, (error, response) => {
 	if (!error) {
 		console.log("Response1 : ", response)
+		res.send(response)
 	}
 	else {
 		console.log("Error1:", error.message);
 	}
 });
+} */
+
+function todoList(req, res) {
+    client.List({}, function (err, todos) {
+		res.send(todos)
+		console.log(todos)
+    });
+}
+
 
 client.get({
 	Todoid: 1
@@ -76,3 +86,7 @@ client.update({
 		console.log("Error 5:", error.message);
 	}
 });
+
+module.exports = {
+    todoList
+}
