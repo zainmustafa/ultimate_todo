@@ -18,12 +18,12 @@ function printResponse(error, response) {
 
 
 
-function insertTodo( todo, description) {
+function insertTodo( task, description) {
     var todo = {
-        todo: todo,
+        task: task,
         description: description
     };
-    client.insert(todo, function (error, empty) {
+    client.insertData(todo, function (error, empty) {
         console.log("SUCCESSFULLY");
         printResponse(error, empty);
     });
@@ -36,5 +36,7 @@ var scriptName = process.argv.shift();
 var command = process.argv.shift();
 
 
-if (command == 'insert')
+if (command == 'add')
     insertTodo(process.argv[0], process.argv[1], process.argv[2]);
+
+

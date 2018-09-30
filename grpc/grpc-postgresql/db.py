@@ -11,10 +11,10 @@ db = SQLAlchemy(app)
 
 
 
-class Ultimate_todo(db.Model):
+class grpc_sql(db.Model):
    id=db.Column(db.Integer,primary_key=True) 
-   todo=db.Column(db.String())
+   task=db.Column(db.String())
    description=db.Column(db.String())
-   def __init__(self,todo,description):
-       self.todo = todo
+   def __init__(self,task,description):
+       self.task = task
        self.description = description
