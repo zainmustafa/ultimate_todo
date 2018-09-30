@@ -7,6 +7,7 @@ service TodoService {
   rpc insertData (Todo) returns (Empty);
   rpc getData (Empty) returns (GetAll);
   rpc getOne (Todoid) returns (Todo);
+  rpc Delete (Todoid) returns (Empty);
 }
 
 // Message Type definition for a Todo.

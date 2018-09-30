@@ -39,8 +39,17 @@ getOne: function(call, callback) {
                  console.log(res.rows);
     })
      },
+
+delete: function(call, callback) {
+    database.query('DELETE FROM grpc_sql WHERE id = $1', [call.request.id], (err) => {
+        if (err) throw err;
+         console.log("deleted succesfully");
+        })
+   },
  
  });
+
+
  
 server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
 server.start();

@@ -41,6 +41,16 @@ function getOneData(id) {
         });
     }
 
+function deleteTodo(id) {
+        client.delete({
+            id:id
+        }, function (error, empty) {
+            console.log("TASK DELETED SUCCESSFULLY");
+            
+            printResponse(error, empty);
+        });
+    }
+
 
 
 var processName = process.argv.shift();
@@ -54,5 +64,7 @@ else if (command == 'getData')
     getAll();
 else if (command == 'getOne')
     getOneData(process.argv[0]);
+else if (command == 'delete')
+    deleteTodo(process.argv[0]);
 
 
