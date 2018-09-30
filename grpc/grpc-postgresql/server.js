@@ -21,6 +21,15 @@ insertData: function(call, callback) {
             console.log("Data are Inserted");
        })
  },
+
+getData: function(_, callback) {
+    database.query('SELECT * FROM grpc_sql', (err, res) => {
+       if (err) throw err;
+        console.log("All data: ")
+        console.log(res.rows);
+    })
+
+},
  
  });
  

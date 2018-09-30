@@ -5,6 +5,7 @@ package proto;
 service TodoService {
   
   rpc insertData (Todo) returns (Empty);
+  rpc getData (Empty) returns (GetAll);
 }
 
 // Message Type definition for a Todo.
@@ -14,6 +15,9 @@ message Empty {}
 message Todo {
   string task = 1;
   string description = 2;
+}
+message GetAll {
+  repeated Todo todos = 1;
 }
 
 

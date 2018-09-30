@@ -28,6 +28,11 @@ function insertTodo( task, description) {
         printResponse(error, empty);
     });
 }
+function getAll() {
+    client.getData({}, function (error, get) {
+         printResponse(error, get);
+      });
+      }
 
 
 
@@ -38,5 +43,7 @@ var command = process.argv.shift();
 
 if (command == 'add')
     insertTodo(process.argv[0], process.argv[1], process.argv[2]);
+else if (command == 'getData')
+    getAll();
 
 
