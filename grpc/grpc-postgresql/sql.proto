@@ -6,6 +6,7 @@ service TodoService {
   
   rpc insertData (Todo) returns (Empty);
   rpc getData (Empty) returns (GetAll);
+  rpc getOne (Todoid) returns (Todo);
 }
 
 // Message Type definition for a Todo.
@@ -18,6 +19,9 @@ message Todo {
 }
 message GetAll {
   repeated Todo todos = 1;
+}
+message Todoid {
+  string id = 1;
 }
 
 

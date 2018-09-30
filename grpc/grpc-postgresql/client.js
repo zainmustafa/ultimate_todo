@@ -33,6 +33,13 @@ function getAll() {
          printResponse(error, get);
       });
       }
+function getOneData(id) {
+        client.getOne({
+            id:id
+        }, function (error, id) {
+            printResponse(error, id);
+        });
+    }
 
 
 
@@ -45,5 +52,7 @@ if (command == 'add')
     insertTodo(process.argv[0], process.argv[1], process.argv[2]);
 else if (command == 'getData')
     getAll();
+else if (command == 'getOne')
+    getOneData(process.argv[0]);
 
 

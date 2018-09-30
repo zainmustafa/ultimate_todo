@@ -30,6 +30,15 @@ getData: function(_, callback) {
     })
 
 },
+
+getOne: function(call, callback) {
+
+    database.query('SELECT * FROM grpc_sql WHERE id = $1',[call.request.id], (err, res) => {
+                if (err) throw err;
+                 console.log("Requested Task given below: ")
+                 console.log(res.rows);
+    })
+     },
  
  });
  
