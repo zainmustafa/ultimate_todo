@@ -50,6 +50,19 @@ function deleteTodo(id) {
             printResponse(error, empty);
         });
     }
+function update(id,task,description) {
+        var todo = {
+            id:id,
+            task: task,
+            description: description
+           
+            
+        };
+        client.updateData(todo, function (error, empty) {
+            console.log("Task UPDATED SUCCESSFULLY");
+            printResponse(error, empty);
+        });
+    }
 
 
 
@@ -66,5 +79,7 @@ else if (command == 'getOne')
     getOneData(process.argv[0]);
 else if (command == 'delete')
     deleteTodo(process.argv[0]);
+else if(command == 'update')
+    update(process.argv[0],process.argv[1],process.argv[2]);
 
 

@@ -8,6 +8,7 @@ service TodoService {
   rpc getData (Empty) returns (GetAll);
   rpc getOne (Todoid) returns (Todo);
   rpc Delete (Todoid) returns (Empty);
+  rpc updateData (TodoUpdate) returns (TodoUpdate);
 }
 
 // Message Type definition for a Todo.
@@ -23,6 +24,11 @@ message GetAll {
 }
 message Todoid {
   string id = 1;
+}
+message TodoUpdate{
+  string id=1;
+  string task=2;
+  string description=3;
 }
 
 

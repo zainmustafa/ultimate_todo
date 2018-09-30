@@ -46,8 +46,16 @@ delete: function(call, callback) {
          console.log("deleted succesfully");
         })
    },
+
+updateData: function(call, callback) {
+    database.query('UPDATE grpc_sql SET description =$3,task =$2 WHERE id = $1', [call.request.id, call.request.task, call.request.description], (err) => {
+     if (err) throw err;
+     console.log("updated succesfully");
+    })
+},
  
  });
+
 
 
  
