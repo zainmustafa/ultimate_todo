@@ -34,10 +34,12 @@ class App extends Component {
         }).then(res => res.json())
             .then(response => {
                 todos.push(response);
+                this.render()
                 this.setState({todos})
             })
             .catch(error => console.error('Error:', error));
     }
+
     delTask(id,index){
         const {todos} = this.state;
         fetch(`https://http://localhost:2000/todo/api/v1.0/tasks/${id}`,{method: "DELETE"})
@@ -45,14 +47,15 @@ class App extends Component {
             .then(response => {
             })
     }
+
     updateTask(id,index){
         const {todos} = this.state;
         swal({
             title: 'Firebase Realtime Todo',
             html:
             '<h2>Update Your Todo</h2>'+
-            '<input id="swal-input1" class="swal2-input" value="'+todos[index].title+'" autofocus placeholder="Title" >' +
-            '<input id="swal-input2" class="swal2-input" value="'+todos[index].description+'" placeholder="Description" >',
+            '<input id="swal-input1" class="swal2-input" value="'+todos.employee[index].title+'" autofocus placeholder="Title" >' +
+            '<input id="swal-input2" class="swal2-input" value="'+todos.employee[index].description+'" placeholder="Description" >',
             preConfirm: function() {
                 return new Promise(function(resolve) {
                     if (true) {
