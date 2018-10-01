@@ -24,7 +24,6 @@ class TaskList extends Component{
                 
                <tbody className="todolistmain" >
                 {todoList.employee.map((todo, index) => {
-                    console.log(todo.Todoid)
                     return <tr key={todo.Todoid}>
                         <td scope="row">{index+1}</td>
                         <td>{todo.title}</td>
