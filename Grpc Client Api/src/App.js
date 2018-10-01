@@ -17,7 +17,7 @@ class App extends Component {
         this.navabar = this.navabar.bind(this);
         this.updateTask = this.updateTask.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
             .then(response => console.log('res', this.setState({ todos: response })))
             .catch(error => console.error('Error:', error));
@@ -38,6 +38,18 @@ class App extends Component {
                 this.setState({ todos })
             })
             .catch(error => console.error('Error:', error));
+            
+            fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
+            .then(response=>{
+
+                fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
+                .then(response=>{
+    
+                    console.log(response)
+                    this.setState({ todos: response });
+    
+                })
+            })
     }
 
     delTask(id, index) {
@@ -51,6 +63,19 @@ class App extends Component {
                 this.setState({ todos })
             })
             .catch(error => console.error('Error:', error));
+
+
+            fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
+            .then(response=>{
+
+                fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
+                .then(response=>{
+    
+                    console.log(response)
+                    this.setState({ todos: response });
+    
+                })
+            })
     }
 
     updateTask(id, index) {
@@ -92,8 +117,23 @@ class App extends Component {
                     );
                 }).catch(error => console.error('Error:', error));
         })
-    }
+
+
+        fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
+        .then(response=>{
+
+            fetch('http://localhost:2000/todo/api/v1.0/tasks/').then(res => res.json())
+            .then(response=>{
+
+                console.log(response)
+                this.setState({ todos: response });
+
+            })
+        })
+        
+        }
     render() {
+        console.log("render chala ha")
         const { todos } = this.state;
         return (
             <div className="App">
