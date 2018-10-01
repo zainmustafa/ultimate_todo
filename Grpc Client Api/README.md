@@ -1,4 +1,3 @@
-# simple-todo-client-nosql-api
+# simple-todo-client-nosql-Grpc-api
 
-## Project Link
- * NoSqlApi TodoApp - [Link](https://simple-todo-client-nosql-api.firebaseapp.com/)
+
